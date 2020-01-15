@@ -1,8 +1,8 @@
 name: Publish
 on:
   push:
-    branches:
-      - master
+    tags:
+      - 'v*'
 env:
   POWERSHELL_GALLERY_API_KEY: ${{ secrets.POWERSHELL_GALLERY_API_KEY }}
 jobs:
