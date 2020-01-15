@@ -34,7 +34,7 @@ function Install-ServiceNowMIDServer {
     )
 
     $midServerFolderName = $Name
-    $rootPath = Join-Path -Path $env:SystemDrive -ChildPath $RootFolder
+    $rootPath = Join-Path -Path $env:SystemDrive -ChildPath $RootFolderName
 
     $queryURL = "https://$($ServiceNowInstanceName).service-now.com/api/now/table/sys_properties?sys_name=mid.version"
     $baseUrl = 'https://install.service-now.com/glide/distribution/builds/package/mid'
@@ -46,6 +46,10 @@ function Install-ServiceNowMIDServer {
     $configFilePath = Join-Path -Path $midserverFolder -ChildPath '\agent\config.xml'
     $wrapperFilePath = Join-Path -Path $midserverFolder -ChildPath '\agent\conf\wrapper-override.conf'
     $startFile = Join-Path -Path $midserverFolder -ChildPath '\agent\start.bat'
+
+    # username and password for the MID server config.xml
+    $username = $Credential.UserName
+    $password = $Credential.GetNetworkCredential().Password
 
     try {
         # check current ServiceNow MID server version
