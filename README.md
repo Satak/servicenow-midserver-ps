@@ -7,6 +7,7 @@ Powershell module for ServiceNow MID server installation
 | Version | Info                    | Date       |
 | ------- | ----------------------- | ---------- |
 | 1.1     | Initial working release | 15.01.2020 |
+| 1.1.1   | Small fix in the installation process | 25.02.2020 |
 
 ## Commands
 
