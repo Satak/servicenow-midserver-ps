@@ -55,7 +55,7 @@ function Install-ServiceNowMIDServer {
         # check current ServiceNow MID server version
         $MIDversion = (Invoke-RestMethod $queryURL -Credential $Credential -ErrorAction Stop).result.value
         if (!$MIDversion) {
-            Write-Warning "Installation stopped. Can't fetch MID server version from target ServiceNow instance. Check network connectivity and MID server user credentials."
+            Write-Warning "Installation stopped. Can't fetch MID server version from target ServiceNow instance ($ServiceNowInstanceName). Check network connectivity and MID server user credentials."
             [Net.ServicePointManager]::SecurityProtocol = $originalSecurityProtocol
             break
         }
@@ -65,19 +65,20 @@ function Install-ServiceNowMIDServer {
         $midServerAgentFileName = "mid.$($MIDversion).windows.x86-64.zip"
         $MIDServerAgentURL = $baseUrl + $dateString + $midServerAgentFileName
     
+        # MID server agent download location: C:\Users\<username>\AppData\Local\Temp\<midserveragentfile.zip>
         $outfile = Join-Path -Path $env:TEMP -ChildPath $midServerAgentFileName
-
-        if (Test-Path $midserverFolder) {
-            Write-Warning "Installation stopped. MID server folder $midserverFolder and service already exists"
+        
+        if ((Get-ChildItem $midserverFolder | Measure-Object).count) {
+            Write-Warning "Installation stopped. MID server folder $midserverFolder already exists and it has files in it. Remove the folder and relaunch this installer."
             [Net.ServicePointManager]::SecurityProtocol = $originalSecurityProtocol
             break
         }
-        New-Item -ItemType Directory -Path $midserverFolder
+        New-Item -ItemType Directory -Path $midserverFolder -ErrorAction SilentlyContinue
 
         if (!(Test-Path $outfile)) {
             # download the Mid server agent (zip file) if it doesn't exist locally
             Write-Output "Downloading MID server agent $MIDServerAgentURL"
-            Invoke-WebRequest -Uri $MIDServerAgentURL -OutFile $outfile
+            Invoke-WebRequest -Uri $MIDServerAgentURL -UseBasicParsing -OutFile $outfile
         }
 
         # Unzip MID server agent zip file
