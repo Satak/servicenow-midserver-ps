@@ -1,5 +1,7 @@
 # ServiceNow MID server Powershell Module
 
+![Publish](https://github.com/Satak/servicenow-midserver-ps/workflows/Publish/badge.svg)
+
 Powershell module for ServiceNow MID server installation
 
 | Version | Info                    | Date       |
