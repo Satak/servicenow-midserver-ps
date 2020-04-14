@@ -68,7 +68,7 @@ function Install-ServiceNowMIDServer {
         # MID server agent download location: C:\Users\<username>\AppData\Local\Temp\<midserveragentfile.zip>
         $outfile = Join-Path -Path $env:TEMP -ChildPath $midServerAgentFileName
         
-        if ((Get-ChildItem $midserverFolder | Measure-Object).count) {
+        if ((Get-ChildItem $midserverFolder -ErrorAction SilentlyContinue | Measure-Object).count) {
             Write-Warning "Installation stopped. MID server folder $midserverFolder already exists and it has files in it. Remove the folder and relaunch this installer."
             [Net.ServicePointManager]::SecurityProtocol = $originalSecurityProtocol
             break
