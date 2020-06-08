@@ -1,6 +1,8 @@
 # ServiceNow MID server Powershell Module
 
 ![Publish](https://github.com/Satak/servicenow-midserver-ps/workflows/Publish/badge.svg)
+[![PS Gallery][psgallery-badge-dt]][powershell-gallery]
+[![PS Gallery][psgallery-badge-v]][powershell-gallery]
 
 Powershell module for ServiceNow MID server installation
 
@@ -45,3 +47,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 Install-Module -Name ServiceNow-MIDServer
 Install-ServiceNowMIDServer -ServiceNowInstanceName 'dev78602' -Name 'AzureMIDServer' -Credential (Get-Credential)
 ```
+
+[powershell-gallery]: https://www.powershellgallery.com/packages/ServiceNow-MIDServer/
+[psgallery-badge-dt]: https://img.shields.io/powershellgallery/dt/ServiceNow-MIDServer.svg
+[psgallery-badge-v]: https://img.shields.io/powershellgallery/v/ServiceNow-MIDServer.svg
