@@ -6,11 +6,12 @@
 
 Powershell module for ServiceNow MID server installation
 
-| Version | Info                    | Date       |
-| ------- | ----------------------- | ---------- |
-| 1.1.3   | suppress error message on Get-ChildItem | 14.04.2020 |
-| 1.1.1   | Small fix in the installation process | 25.02.2020 |
-| 1.1     | Initial working release | 15.01.2020 |
+| Version | Info                                               | Date       |
+| ------- | -------------------------------------------------- | ---------- |
+| 1.1.4   | Progress bar set to silent to boost download speed | 16.09.2020 |
+| 1.1.3   | Suppress error message on Get-ChildItem            | 14.04.2020 |
+| 1.1.1   | Small fix in the installation process              | 25.02.2020 |
+| 1.1     | Initial working release                            | 15.01.2020 |
 
 ## Commands
 
